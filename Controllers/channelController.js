@@ -1,18 +1,17 @@
 import Channel from '../Models/channel.js';
 
+// Utility function to generate the channel ID
 const generateChannelID = async () => {
-    const lastChannel = await Channel.findOne().sort({ channelID: -1 }).exec();
-    if (!lastChannel || !lastChannel.channelID) {
-      return 'CHROF0001';
-    }
-    const lastID = lastChannel.channelID;
-    const numericPart = parseInt(lastID.slice(5), 10);
-    const newNumericPart = numericPart + 1;
-    const newID = CHROF$`{newNumericPart.toString().padStart(4, '0')}`;
-    return newID;
-  };
-
-
+  const lastChannel = await Channel.findOne().sort({ $natural: -1 });
+  let newChannelID;
+  if (lastChannel) {
+    const lastIDNum = parseInt(lastChannel.channelID.substring(5));
+    newChannelID = `CHROF${(lastIDNum + 1).toString().padStart(4, '0')}`;
+  } else {
+    newChannelID = 'CHROF0001';
+  }
+  return newChannelID;
+};
 
 export const getAllChannels = async (req, res) => {
   try {
@@ -24,11 +23,11 @@ export const getAllChannels = async (req, res) => {
 };
 
 export const createChannel = async (req, res) => {
-  const { channelID, name, email, phone, address } = req.body;
-
-  const newChannel = new Channel({ channelID, name, email, phone, address });
+  const { name, email, phone, address } = req.body;
 
   try {
+    const channelID = await generateChannelID();
+    const newChannel = new Channel({ channelID, name, email, phone, address });
     await newChannel.save();
     res.status(201).json(newChannel);
   } catch (error) {
@@ -59,12 +58,11 @@ export const updateChannel = async (req, res) => {
 };
 
 export const deleteChannel = async (req, res) => {
-    const { id } = req.params;
-    try {
-      await Channel.findByIdAndDelete(id);
-      res.status(200).json({ message: "Channel deleted successfully." });
-    } catch (error) {
-      res.status(409).json({ message: error.message });
-    }
-  };
-  
+  const { id } = req.params;
+  try {
+    await Channel.findByIdAndDelete(id);
+    res.status(200).json({ message: "Channel deleted successfully." });
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
