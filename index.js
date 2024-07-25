@@ -1,22 +1,19 @@
-import dotenv from "dotenv";
-import { ConnectDB } from "./DB/index.js";
-import { app } from "./app.js";
-dotenv.config({
-  path: "./env",
-});
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const connectDB = require('./config/db');
+const recordRoutes = require('./routes/recordRoutes');
 
-const port = process.env.PORT || 3001;
+const app = express();
 
-ConnectDB()
-  .then(() => {
-    app.listen(port, () => {
-      console.log(`Connecting to ${port}`);
-    });
-    app.on("error", (error) => {
-      console.log(`Error: ${error}`);
-      throw error;
-    });
-  })
-  .catch((error) => {
-    console.log(`MONGO DB CONNECTION ERROR: ${error}`);
-  });
+// Connect to MongoDB
+connectDB();
+
+app.use(cors());
+app.use(bodyParser.json());
+
+app.use('/api/records', recordRoutes);
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
