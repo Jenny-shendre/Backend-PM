@@ -1,4 +1,4 @@
-console.log('Service routes loaded');
+// console.log('Service routes loaded');
 
 import express from 'express';
 import { createService, deleteService, getServiceById, getServices, updateService } from '../Controllers/serviceController.js';
