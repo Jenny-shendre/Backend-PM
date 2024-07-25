@@ -96,6 +96,7 @@ export const getCustomers = asyncHandler(async (req, res) => {
 export const getCustomerById = asyncHandler(async (req, res) => {
     const registeredCustomer = await Customer.find({"customerId" : req.params.id}).populate('attendant', 'name');
     if (!registeredCustomer) return res.status(404).json({ message: 'Customer not found' });
+    console.log(registeredCustomer)
     res.status(200).json(registeredCustomer);
 });
 

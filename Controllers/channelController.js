@@ -36,7 +36,7 @@ export const createChannel = async (req, res) => {
 };
 
 export const getChannelById = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.query;
   try {
     const channel = await Channel.findById(id);
     res.status(200).json(channel);
