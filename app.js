@@ -4,11 +4,10 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import salesRoutes from './router/salesRoutes.js';
 
-
 // import routes
 import partnerRouter from "./router/partnerRouter.js";
 import customerRoutes from "./router/customerRoutes.js";
-import channelRouter from "./router/channelRouter.js"
+import channelRouter from "./router/channelRouter.js";
 import logger from "./Middlewares/logger.js";
 import errorMiddleware from "./Middlewares/errorMiddleware.js";
 import authRoutes from "./router/authRoutes.js";
@@ -19,7 +18,7 @@ import serviceRoutes from "./router/serviceRoutes.js";
 import servicePersonRouter from "./router/servicePersonRouter.js";
 import timeline from "./router/timesheet.routes.js";
 import homeRoute from "./router/homeRoute.js";
-import recordRoute from './router/recordRoute.js'
+import recordRoute from './router/recordRoute.js';
 import editFormRoutes from './router/editFormRoutes.js';
 
 // initialize the express application and middleware
@@ -38,20 +37,23 @@ app.use(cookieParser());
 app.use(logger);
 app.use(errorMiddleware);
 
+// Ensure all routes are correctly mapped
 
-app.use("/api",homeRoute)
+app.use("/api", homeRoute); // Home route
 app.use("/api/partners", partnerRouter);
 app.use("/api/customers", customerRoutes);
 app.use("/api/attendants", attendantRoutes);
 app.use("/api/login", authRoutes);
 app.use("/api/projects", projectRoutes);
-app.use("/api/seviceRequest", serviceRequest);
+app.use("/api/serviceRequest", serviceRequest); // Corrected typo in "serviceRequest"
 app.use("/api/services", serviceRoutes);
 app.use("/api/servicePerson", servicePersonRouter);
 app.use("/api/timeSheet", timeline);
-app.use('/api/channels', channelRouter);
-app.use('/api/record', recordRoute);
-app.use('/api/forms', editFormRoutes);
-// Routes
-app.use('/api', salesRoutes);
+app.use("/api/channels", channelRouter);
+app.use("/api/record", recordRoute);
+app.use("/api/forms", editFormRoutes);
+
+// Routes from salesRoutes
+app.use("/api", salesRoutes);
+
 export { app };
