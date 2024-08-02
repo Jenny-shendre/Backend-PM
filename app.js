@@ -2,6 +2,8 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import bodyParser from "body-parser";
+import salesRoutes from './router/salesRoutes.js';
+
 
 // import routes
 import partnerRouter from "./router/partnerRouter.js";
@@ -50,4 +52,6 @@ app.use("/api/timeSheet", timeline);
 app.use('/api/channels', channelRouter);
 app.use('/api/record', recordRoute);
 app.use('/api/forms', editFormRoutes);
+// Routes
+app.use('/api', salesRoutes);
 export { app };
