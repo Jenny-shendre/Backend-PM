@@ -6,12 +6,20 @@ import {
   newRecord,
   updateRecord,
   deleteRecord
-} from '../Controllers/recordController.js';
+} from '../Controllers/recordController.js'
+// GET all records
+router.get('/getAllRecords',getAllRecords);
 
-router.get('/getAllRecords', getAllRecords);
-router.get('/getRecordBy/:id', getRecord, (req, res) => res.json(res.record)); // Use the middleware and then send the response
+// GET one record by ID
+router.get('/getRecordBy/:id', getRecord);
+
+// CREATE new record
 router.post('/newRecord', newRecord);
-router.put('/updateRecord/:id', updateRecord);
-router.delete('/deleteRecord/:id', deleteRecord);
+  
+// UPDATE record by ID
+router.post('/updateRecord/:id', updateRecord); 
+  
+// DELETE record by ID
+router.post('/deleteRecord/:id', deleteRecord);
 
 export default router;
