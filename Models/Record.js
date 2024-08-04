@@ -14,5 +14,5 @@ const RecordSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now }
 });
 
-const Record = mongoose.model('partners', RecordSchema);
+const Record = mongoose.model('records', RecordSchema);
 export default Record;
