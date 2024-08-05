@@ -4,6 +4,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 
 // import routes
+import salesRoutes from './router/salesRoutes.js';
 import partnerRouter from "./router/partnerRouter.js";
 import customerRoutes from "./router/customerRoutes.js";
 import channelRouter from "./router/channelRouter.js";
@@ -44,5 +45,6 @@ app.use("/api/timeSheet", timeline);
 app.use('/api/channels', channelRouter);
 app.use('/api/record', recordRoute);
 app.use('/api/forms', editFormRoutes);
+app.use('/api', salesRoutes);
 
 export { app };
