@@ -58,11 +58,11 @@ export const updateRecord = asyncHandler(async (req, res) => {
         }
 
         // Update only specific fields
-        if (req.body.channelName != null) {
-            record.channelName = req.body.channelName;
+        if (req.body.customerName != null) {
+            record.customerName = req.body.customerName;
         }
-        if (req.body.channelPartnerName != null) {
-            record.channelPartnerName = req.body.channelPartnerName;
+        if (req.body.channelPartnerCompanyName != null) {
+            record.channelPartnerCompanyName = req.body.channelPartnerCompanyName;
         }
         if (req.body.customerMobileLastFour != null) {
             record.customerMobileLastFour = req.body.customerMobileLastFour;
