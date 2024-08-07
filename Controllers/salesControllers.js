@@ -3,12 +3,13 @@ import SalesNote from '../Models/SalesNote.js';
 
 // Create a new note
 export const createNote = async (req, res) => {
-  const { name, note, role } = req.body;
+  const { name, note, role,project } = req.body;
   try {
     const newNote = new SalesNote({
       name,
       note,
       role,
+      project
     });
     await newNote.save();
     res.status(201).json(newNote);
@@ -29,11 +30,11 @@ export const getNotes = async (req, res) => {
 
 // Edit a note by ID
 export const editNote = async (req, res) => {
-  const { name, note, role } = req.body;
+  const { name, note, role,project } = req.body;
   const { id } = req.params;
 
   try {
-    const updatedNote = await SalesNote.findByIdAndUpdate(id, { name, note, role }, { new: true });
+    const updatedNote = await SalesNote.findByIdAndUpdate(id, { name, note, role,project }, { new: true });
     if (!updatedNote) {
       return res.status(404).json({ message: 'Note not found' });
     }
