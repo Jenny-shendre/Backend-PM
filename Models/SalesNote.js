@@ -14,6 +14,10 @@ const salesNoteSchema = new mongoose.Schema({
     required: true,
     enum: ['Client', 'Manager', 'Super Admin']
   },
+  project: {
+    type: String,
+    required: true
+  },
   date: {
     type: Date,
     default: Date.now
