@@ -11,7 +11,8 @@ const RecordSchema = new mongoose.Schema({
   attendant: { type: String, required: true },
   attendantName: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now }
+  updatedAt: { type: Date, default: Date.now },
+  agentPhoneNo : { type: Number, required: true }
 });
 
 const Record = mongoose.model('partners', RecordSchema);
