@@ -15,5 +15,5 @@ const RecordSchema = new mongoose.Schema({
   agentPhoneNo : { type: Number, required: true }
 });
 
-const Record = mongoose.model('partners', RecordSchema);
+const Record = mongoose.model('records', RecordSchema);
 export default Record;
