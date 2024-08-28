@@ -37,7 +37,10 @@ export const newRecord = asyncHandler(async (req, res) => {
         projectLocation: req.body.projectLocation,
         partnerId: req.body.partnerId,
         attendant: req.body.attendant,
-        attendantName: req.body.attendantName
+        attendantName: req.body.attendantName,
+        responseTime: req.body.responseTime,
+        meetingDuration: req.body.meetingDuration,
+        agentPhoneNo: req.body.agentPhoneNo
     });
 
     try {
@@ -58,14 +61,41 @@ export const updateRecord = asyncHandler(async (req, res) => {
         }
 
         // Update only specific fields
-        if (req.body.customerName != null) {
-            record.customerName = req.body.customerName;
+        if (req.body.channelPartnerName != null) {
+            record.channelPartnerName = req.body.channelPartnerName;
         }
         if (req.body.channelPartnerCompanyName != null) {
             record.channelPartnerCompanyName = req.body.channelPartnerCompanyName;
         }
+        if (req.body.customerName != null) {
+            record.customerName = req.body.customerName;
+        }
         if (req.body.customerMobileLastFour != null) {
             record.customerMobileLastFour = req.body.customerMobileLastFour;
+        }
+        if (req.body.projectName != null) {
+            record.projectName = req.body.projectName;
+        }
+        if (req.body.projectLocation != null) {
+            record.projectLocation = req.body.projectLocation;
+        }
+        if (req.body.partnerId != null) {
+            record.partnerId = req.body.partnerId;
+        }
+        if (req.body.attendant != null) {
+            record.attendant = req.body.attendant;
+        }
+        if (req.body.attendantName != null) {
+            record.attendantName = req.body.attendantName;
+        }
+        if (req.body.responseTime != null) {
+            record.responseTime = req.body.responseTime;
+        }
+        if (req.body.meetingDuration != null) {
+            record.meetingDuration = req.body.meetingDuration;
+        }
+        if (req.body.agentPhoneNo != null) {
+            record.agentPhoneNo = req.body.agentPhoneNo;
         }
 
         record.updatedAt = Date.now();
